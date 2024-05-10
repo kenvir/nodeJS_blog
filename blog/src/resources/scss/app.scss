@@ -1,4 +1,4 @@
-@import "variable";
+@import 'variable';
 
 h1 {
   color: $red-color;
@@ -6,4 +6,9 @@ h1 {
 
 h2 {
   color: green;
+}
+
+.checkbox-select-all-options {
+  width: 180px;
+  margin: 0 16px;
 }

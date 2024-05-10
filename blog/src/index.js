@@ -1,35 +1,53 @@
-const express = require("express");
-const morgan = require("morgan");
+const express = require('express');
+const morgan = require('morgan');
+const methodOverride = require('method-override');
 // const { engine } = require("express-handlebars");
-const handlebars = require("express-handlebars").engine;
-const path = require("path");
+const handlebars = require('express-handlebars').engine;
+const path = require('path');
+
+const SortMiddleWare = require('./app/middlewares/sortMiddleware');
+
+const route = require('./routes');
+const db = require('./config/db');
+
+// Connect DB
+db.connect();
+
 const app = express();
 const port = 3000;
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(
+  express.urlencoded({
+    extended: true,
+  }),
+);
+app.use(express.json());
+
+app.use(methodOverride('_method'));
+
+// custom middlewares
+app.use(SortMiddleWare);
 
 // HTTP logger
-app.use(morgan("combined"));
+// app.use(morgan("combined"));
 
 // Template engine
 // app.engine("handlebars", engine());
 app.engine(
-  "hbs",
+  'hbs',
   handlebars({
-    extname: ".hbs",
-  })
+    extname: '.hbs',
+    helpers: require('./helpers/handlebars'),
+  }),
 );
-app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "resources/views"));
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'resources/views'));
 
-app.get("/", (req, res) => {
-  res.render("home");
-});
-
-app.get("/news", (req, res) => {
-  res.render("news");
-});
+// Routes init
+route(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening at http://localhost:${port}`);
 });
