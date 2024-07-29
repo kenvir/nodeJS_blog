@@ -7,27 +7,19 @@ const path = require('path');
 
 const SortMiddleWare = require('./app/middlewares/sortMiddleware');
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
 const route = require('./routes');
 const db = require('./config/db');
 
 // Connect DB
 db.connect();
 
-const app = express();
+const app = express(); // Initialize the app here
 const port = 3000;
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use(express.static(path.join(__dirname, 'public')));
-
-// app.use(
-//   express.urlencoded({
-//     extended: true,
-//   }),
-// );
-// app.use(express.json());
-
 app.use(methodOverride('_method'));
 
 // custom middlewares
@@ -37,7 +29,6 @@ app.use(SortMiddleWare);
 // app.use(morgan("combined"));
 
 // Template engine
-// app.engine("handlebars", engine());
 app.engine(
   'hbs',
   handlebars({
