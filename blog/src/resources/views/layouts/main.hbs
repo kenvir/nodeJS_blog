@@ -14,9 +14,12 @@
     <link rel="stylesheet" href="/css/app.css" />
   </head>
   <body>
-    <div class="class">
+    <div class="">
       {{> header}}
-      <div class="container">{{{body}}}</div>
+      <div class="container d-flex">
+        <div class="col-lg-2 d-flex justify-content-start mt-5">{{> sidebar}}</div>
+        <div class="col-lg-10">{{{body}}}</div>
+      </div>
       {{> footer}}
     </div>
     <script

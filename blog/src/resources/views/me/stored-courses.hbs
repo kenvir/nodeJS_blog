@@ -12,7 +12,7 @@
   </div>
 
   <div class="mt-4 d-flex align-items-center">
-    <select class="form-select form-select-sm checkbox-select-all-options" name="action" required>
+    <select class="form-select form-select-sm checkbox-select-all-options" name="action" required>z
       <option value="">-- Select Action --</option>
       <option value="delete">Delete</option>
     </select>
@@ -20,7 +20,7 @@
     <button class="btn btn-primary btn-sm check-all-submit-btn disabled">Submit</button>
   </div>
 
-  <table class="table mt-4 table-bordered rounded bg-secondary">
+  <table class="table mt-4 table-bordered">
     <thead>
       <tr>
         <th scope="col">
@@ -48,12 +48,12 @@
         <td>
           <a
             href="/courses/{{this._id}}/edit"
-            class="btn btn-link text-decoration-none text-white bg-warning bg-opacity-50 bg-opacity-0-hover"
+            class="btn btn-link text-decoration-none text-white bg-warning bg-opacity-50 btn-edit"
             >Edit</a
           >
           <a
             href=""
-            class="btn btn-link text-decoration-none text-white bg-danger"
+            class="btn btn-link text-decoration-none text-white bg-danger btn-delete"
             data-bs-toggle="modal"
             data-id="{{this._id}}"
             data-bs-target="#delete-course-modal"
@@ -124,7 +124,7 @@
       deleteForm.submit();
     };
 
-    // When checkboxAll duoc check
+    // When checkboxAll checked
     checkboxAll.change(function () {
       var isCheckedAll = $(this).prop('checked');
       courseItemCheckbox.prop('checked', isCheckedAll);

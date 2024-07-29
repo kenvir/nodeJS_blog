@@ -13,7 +13,7 @@ class SiteController {
       .catch(next);
   }
 
-  // Use .lean()
+  // Use.lean()
   // index(req, res, next) {
   //   Course.find({})
   //     .lean()

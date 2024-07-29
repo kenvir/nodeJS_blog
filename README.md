@@ -8,12 +8,19 @@ npm start
 
 npm run watch
 
+- 12px = 1rem
+
+# Icon iconic
+
+https://icones.js.org/collection/all
+Eg: <span class="oi oi-home"></span>
+
 # Method
 
 GET: nhan du lieu tu server ve client
 POST: gui du lieu tu client len server
 PUT - PATCH: chinh sua du lieu
-DELETE:
+DELETE:3 xoa du lieu
 OPTIONS:
 HEAD:
 

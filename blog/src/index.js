@@ -1,11 +1,14 @@
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const methodOverride = require('method-override');
 // const { engine } = require("express-handlebars");
 const handlebars = require('express-handlebars').engine;
 const path = require('path');
 
 const SortMiddleWare = require('./app/middlewares/sortMiddleware');
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const route = require('./routes');
 const db = require('./config/db');
@@ -18,12 +21,12 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(
-  express.urlencoded({
-    extended: true,
-  }),
-);
-app.use(express.json());
+// app.use(
+//   express.urlencoded({
+//     extended: true,
+//   }),
+// );
+// app.use(express.json());
 
 app.use(methodOverride('_method'));
 
